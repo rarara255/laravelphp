@@ -26,3 +26,4 @@ Route::put('/tasks/{id}', [\App\Http\Controllers\TaskController::class, 'update'
 Route::get('/tasks', [\App\Http\Controllers\TaskController::class, 'index'])->name('tasks.index');
 Route::get('/tasks/{id}', [\App\Http\Controllers\TaskController::class, 'show'])->name('tasks.show');
 Route::delete('tasks/{id}', [\App\Http\Controllers\TaskController::class, 'destroy'])->name('tasks.destroy');
+Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'create'])->name('register');
