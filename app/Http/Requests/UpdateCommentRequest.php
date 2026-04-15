@@ -24,7 +24,11 @@ class UpdateCommentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'author' => 'sometimes',
+            'author_email'=>'sometimes',
+            'content'=>'sometimes',
+            'theme'=>'sometimes',
+            'is_moderated'=>'sometimes',
         ];
     }
 }

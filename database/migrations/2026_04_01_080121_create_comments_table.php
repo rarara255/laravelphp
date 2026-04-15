@@ -19,7 +19,7 @@ class CreateCommentsTable extends Migration
             $table->string('author_email')->nullable();
             $table->text('content');
             $table->string('theme')->nullable();
-            $table->boolean('is_moderated');
+            $table->boolean('is_moderated')->default(false);
             $table->timestamps();
         });
     }

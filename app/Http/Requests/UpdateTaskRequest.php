@@ -24,7 +24,12 @@ class UpdateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'sometimes',
+            'description'=>'sometimes',
+            'status'=>'sometimes',
+            'due_date'=>'sometimes',
+            'priority'=>'sometimes',
+            'performing_people'=>'sometimes',
         ];
     }
 }

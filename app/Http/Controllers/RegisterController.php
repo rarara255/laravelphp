@@ -18,6 +18,6 @@ class RegisterController extends Controller
     public function store(StoreUserRequest $request){
         $validated = $request->validated();
         $user = $this->userService->createUser($validated);
-
+        dd($user);
     }
 }

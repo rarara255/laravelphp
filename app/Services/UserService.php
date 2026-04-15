@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 use App\Models\User;
+Use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -8,8 +9,9 @@ class UserService
     {
         try {
             $user = new User();
+            $user->name = $data['name'];
             $user->email = $data['email'];
-            $user->password = \Illuminate\Support\Facades\Hash::make($data['password']);
+            $user->password = Hash::make($data['password']);
             return $user;
         } catch (\Exception $exception) {
             throw $exception;
