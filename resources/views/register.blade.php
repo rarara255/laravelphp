@@ -26,11 +26,11 @@
         }
         .formdiv{
             display: flex;
-            width: 50px;
-            height: 50px;
-            flex-direction: column;
+            width: 450px;
+            height: 150px;
+            flex-direction: row;
             align-items: center;
-            justify-content: space-around;
+            justify-content: start;
         }
     </style>
 </head>
@@ -40,8 +40,8 @@
         @csrf
         <div class="formdiv">
             <label for="name">Имя пользователя:
-                <input type="text" id="name" name="name" placeholder="Введите ваше имя">
-            </label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя"> </label>
+
         </div>
 
         <div class="formdiv">
