@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->string('status');
             $table->date('due_date')->nullable();
             $table->integer('priority');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('performing_people')->nullable();
             $table->timestamps();
         });

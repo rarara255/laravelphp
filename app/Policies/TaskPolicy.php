@@ -10,6 +10,7 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
+
     /**
      * Determine whether the user can view any models.
      *
@@ -18,7 +19,7 @@ class TaskPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +31,10 @@ class TaskPolicy
      */
     public function view(User $user, Task $task)
     {
-        //
+        if($user->isAdmin()){
+            return true;
+        }
+        return $task->isOwnedBy($user);
     }
 
     /**
@@ -41,7 +45,7 @@ class TaskPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +57,10 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        //
+        if($user->isAdmin()){
+            return true;
+        }
+        return $task->isOwnedBy($user);
     }
 
     /**
@@ -65,7 +72,11 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task)
     {
-        //
+        if ($user->isAdmin()) {
+            return true;
+        }
+
+        return $task->isOwnedBy($user);
     }
 
     /**
