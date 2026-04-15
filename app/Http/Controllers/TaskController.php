@@ -38,26 +38,7 @@ class TaskController extends Controller
 
     public function show($id)
     {
-<<<<<<< HEAD
         $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
-        return view('tasks.show', compact('task'));
-    }
-
-    public function edit(Task $task)
-    {
-        //
-    }
-
-    public function update(Request $request, Task $task)
-    {
-        //
-    }
-
-    public function destroy(Task $task)
-    {
-        //
-=======
-        $task = Task::findOrFail($id); // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
 
@@ -73,7 +54,7 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $updatedTask = $this->taskService->updateTask($task,$validated);
         dd($updatedTask);
-        //return Redirect::route('tasks.index')->with('success', 'Задача успешно обновлена');
+        return Redirect::route('tasks.index')->with('success', 'Задача успешно обновлена');
     }
 
     public function destroy($id)
@@ -81,6 +62,5 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
->>>>>>> d44176e (blade,controller)
     }
 }
