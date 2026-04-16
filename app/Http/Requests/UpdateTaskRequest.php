@@ -28,7 +28,7 @@ class UpdateTaskRequest extends FormRequest
             'description'=>'sometimes',
             'status'=>'sometimes',
             'due_date'=>'sometimes',
-            'priority'=>'sometimes',
+            'priority'=>'sometimes|min:1|max:5',
             'performing_people'=>'sometimes',
         ];
     }
