@@ -43,7 +43,7 @@
             </label>
 
             <label>Дата сдачи задачи
-                <input name="due_date" type="date"value="{{$task->due_date}}">
+                <input name="due_date" type="date" value="{{$task->due_date}}">
             </label>
 
             <label>Приоритет задачи
