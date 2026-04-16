@@ -12,6 +12,7 @@ class UserService
             $user->name = $data['name'];
             $user->email = $data['email'];
             $user->password = Hash::make($data['password']);
+            $user->save();
             return $user;
         } catch (\Exception $exception) {
             throw $exception;
