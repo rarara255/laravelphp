@@ -32,7 +32,6 @@ class TaskController extends Controller
         // обращение к приватному свойству конструктора
         // через контекст this
         $task = $this->taskService->createTask($validated);
-        dd($task);
         return Redirect::route('tasks.index')->with('success','Задача успешно создана');
     }
 
@@ -53,7 +52,6 @@ class TaskController extends Controller
         $validated = $request->validated();
         $task = Task::findOrFail($id);
         $updatedTask = $this->taskService->updateTask($task,$validated);
-        dd($updatedTask);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно обновлена');
     }
 

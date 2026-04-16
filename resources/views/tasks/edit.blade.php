@@ -35,7 +35,7 @@
 
             <label>Статус задачи
                 <select name="group" >
-                    <option selected disabled value="{{$task->status}}">Выбери статус задачи</option>
+                    <option selected disabled>{{$task->status}}</option>
                     <option value="completed">Completed</option>
                     <option value="processing">Processing</option>
                     <option value="done">Done</option>
@@ -43,7 +43,7 @@
             </label>
 
             <label>Дата сдачи задачи
-                <input name="due_date" type="date"value="{{$task->due_name}}">
+                <input name="due_date" type="date"value="{{$task->due_date}}">
             </label>
 
             <label>Приоритет задачи

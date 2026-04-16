@@ -33,7 +33,7 @@
         </label>
 
         <label>Статус задачи
-            <select name="group" >
+            <select name="status" >
                 <option selected disabled>Выбери статус задачи</option>
                 <option value="completed">Completed</option>
                 <option value="processing">Processing</option>
@@ -46,7 +46,7 @@
         </label>
 
         <label>Приоритет задачи
-            <input name="status" type="number">
+            <input name="priority" type="number">
         </label>
 
         <label>Ответственные люди
