@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Redirect;
 class TaskController extends Controller
 {
     // реализация Dependency Injection
-    public function __construct(private TaskService $taskService){}
+    private TaskService $taskService;
+    public function __construct(TaskService $taskService){
+        $this->taskService = $taskService;
+    }
 
     public function index()
     {
-        $tasks = Task::paginate(2);
-        return view('tasks.index', compact('tasks'));
+        $tasks = $this->taskService->getAllTasks();
+        return View::make('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
@@ -31,7 +34,7 @@ class TaskController extends Controller
         // пришедших от пользователя
         // обращение к приватному свойству конструктора
         // через контекст this
-        $task = $this->taskService->createTask($validated);
+        $this->taskService->createTask($validated);
         return Redirect::route('tasks.index')->with('success','Задача успешно создана');
     }
 
@@ -43,22 +46,23 @@ class TaskController extends Controller
 
     public function edit($id)
     {
-        $task = Task::findOrFail($id);
-        return view('tasks.edit', compact('task'));
+        $task = $this->taskService->getTaskById($id);
+
+        return View::make('tasks.edit', ['task'=>$task]);
     }
 
     public function update(UpdateTaskRequest $request, $id)
     {
+        $task = $this->taskService->getTaskById($id);
+
         $validated = $request->validated();
-        $task = Task::findOrFail($id);
-        $updatedTask = $this->taskService->updateTask($task,$validated);
+        $this->taskService->updateTask($task,$validated);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно обновлена');
     }
 
     public function destroy($id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
+        $this->taskService->deleteTask($id);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
     }
 }

@@ -4,6 +4,13 @@ namespace App\Services;
 use App\Models\Task;
 class TaskService
 {
+    public function getAllTasks(){
+        return Task::paginate(2);
+    }
+
+    public function getTaskById($id){
+        return Task::findOrFail($id);
+    }
     public function createTask(array $data)
     {
         try {
@@ -18,5 +25,10 @@ class TaskService
     {
         $task->update($data);
         return $task;
+    }
+
+    public function deleteTask($id){
+        $task = Task::findOrFail($id);
+        $task->delete();
     }
 }
