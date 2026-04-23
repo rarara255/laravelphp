@@ -11,6 +11,16 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    public const ROLE_ADMIN = 'admin';
+    public const ROLE_EDITOR = 'editor';
+    public const ROLE_AUTHOR = 'author';
+    public const ROLE_MEMBER = 'member';
+    public const ROLE_GUEST = 'guest';
+
+
+    public function hasRole(string $role): bool{
+        return $this->role === $role;
+    }
 
     /**
      * The attributes that are mass assignable.
