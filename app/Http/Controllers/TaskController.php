@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Services\TaskService;
@@ -20,20 +21,20 @@ class TaskController extends Controller
 
     public function index()
     {
-        $this->authorize('viewAny');
+        $this->authorize('viewAny', Task::class);
         $tasks = $this->taskService->getAllTasks();
         return View::make('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
-        $this->authorize('create');
+       $this->authorize('create', Task::class);
         return View::make('tasks.create');
     }
 
     public function store(StoreTaskRequest $request)
     {
-        $this->authorize('create');
+        $this->authorize('create', Task::class);
         $validated = $request->validated(); // произведение валидации данных
         // пришедших от пользователя
         // обращение к приватному свойству конструктора
@@ -44,14 +45,15 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $this->authorize('view');
+        $this->authorize('view', Task::class);
         $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
 
     public function edit($id)
     {
-        $this->authorize('update');
+        $task = $this->taskService->getTaskById($id);
+        $this->authorize('update', $id);
         $task = $this->taskService->getTaskById($id);
 
         return View::make('tasks.edit', ['task'=>$task]);
@@ -59,7 +61,8 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, $id)
     {
-        $this->authorize('update');
+        $task = $this->taskService->getTaskById($id);
+        $this->authorize('update', $task);
         $task = $this->taskService->getTaskById($id);
 
         $validated = $request->validated();
@@ -69,7 +72,7 @@ class TaskController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('delete');
+        $this->authorize('delete', Task::class);
         $this->taskService->deleteTask($id);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
     }

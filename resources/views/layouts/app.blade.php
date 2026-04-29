@@ -11,7 +11,7 @@
 <body class="bg-light">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
        <div class="container">
-           <a class="navbar-brand" href="/">Posts Project</a>
+           <a class="navbar-brand" href="/">Tasks Project</a>
            <div class="navbar-nav">
                <a class="nav-link" href="{{ route('tasks.index') }}">Задачи</a>
 {{--                @auth--}}

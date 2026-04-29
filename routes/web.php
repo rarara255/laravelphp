@@ -36,3 +36,5 @@ Route::middleware('guest')->group(function (){
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
 Route::get('/admins/createAdmin', [AuthController::class, 'createAdmin']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');

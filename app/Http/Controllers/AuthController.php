@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -16,85 +21,48 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function createAdmin(){
-        $this->authService->CreateAdmin();
+        $this->authService->CreateEditor();
     }
 
 
-    public function index()
+    public function showRegister()
     {
-        //
+        return view('register.login');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function register(RegisterRequest $request)
     {
-        //
+        $data = $request->validated();
+        $user = $this->authService->registerUser($data);
+        Auth::login($user);
+        Session::flash('success','Welcome');
+        return Redirect::route('dashboard');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function showLogin()
     {
-        //
+        return view('auth.login');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    public function login(Request $request)
     {
-        //
+        $data = $request->validate([
+            'email'=>['required'],
+            'password'=>['required']
+        ]);
+        if (Auth::attempt($data)) {
+            $request->session()->regenerate();
+            return Redirect::route('dashboard');
+        }
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    public function logout(Request $request)
     {
-        //
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return Redirect::route('login')->with('success', 'Вы вышли из системы');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+    public function showDashboard()
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        return view('dashboard');
     }
 }

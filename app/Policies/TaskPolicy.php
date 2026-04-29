@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class TaskPolicy
 {
@@ -22,12 +23,13 @@ class TaskPolicy
         if($user->hasRole('admin')){
             return true;
         }
-        return false;
+        return null;
     }
 
     public function viewAny(User $user): bool
     {
         return in_array($user->role,[
+            User::ROLE_ADMIN,
             User::ROLE_MEMBER,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
@@ -44,6 +46,7 @@ class TaskPolicy
     public function view(User $user, Task $task)
     {
         return in_array($user->role,[
+            User::ROLE_ADMIN,
             User::ROLE_MEMBER,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
@@ -59,6 +62,7 @@ class TaskPolicy
     public function create(User $user)
     {
         return in_array($user->role,[
+            User::ROLE_ADMIN,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
         ]);
@@ -74,6 +78,7 @@ class TaskPolicy
     public function update(User $user, Task $task)
     {
         return in_array($user->role,[
+            User::ROLE_ADMIN,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
         ]);
@@ -92,6 +97,7 @@ class TaskPolicy
             return true;
         }
         return in_array($user->role,[
+            User::ROLE_ADMIN,
             User::ROLE_EDITOR
         ]);
     }
