@@ -17,9 +17,21 @@ class TaskPolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function before(User $user)
     {
-        return true;
+        if($user->hasRole('admin')){
+            return true;
+        }
+        return false;
+    }
+
+    public function viewAny(User $user): bool
+    {
+        return in_array($user->role,[
+            User::ROLE_MEMBER,
+            User::ROLE_EDITOR,
+            User::ROLE_AUTHOR
+        ]);
     }
 
     /**
@@ -31,10 +43,11 @@ class TaskPolicy
      */
     public function view(User $user, Task $task)
     {
-        if($user->isAdmin()){
-            return true;
-        }
-        return $task->isOwnedBy($user);
+        return in_array($user->role,[
+            User::ROLE_MEMBER,
+            User::ROLE_EDITOR,
+            User::ROLE_AUTHOR
+        ]);
     }
 
     /**
@@ -45,7 +58,10 @@ class TaskPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return in_array($user->role,[
+            User::ROLE_EDITOR,
+            User::ROLE_AUTHOR
+        ]);
     }
 
     /**
@@ -57,10 +73,10 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        if($user->isAdmin()){
-            return true;
-        }
-        return $task->isOwnedBy($user);
+        return in_array($user->role,[
+            User::ROLE_EDITOR,
+            User::ROLE_AUTHOR
+        ]);
     }
 
     /**
@@ -72,11 +88,12 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task)
     {
-        if ($user->isAdmin()) {
+        if($task->user_id === $user->id){
             return true;
         }
-
-        return $task->isOwnedBy($user);
+        return in_array($user->role,[
+            User::ROLE_EDITOR
+        ]);
     }
 
     /**

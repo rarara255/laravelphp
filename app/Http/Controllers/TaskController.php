@@ -9,6 +9,7 @@ use App\Services\TaskService;
 use App\Http\Requests\StoreTaskRequest;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Redirect;
+
 class TaskController extends Controller
 {
     // реализация Dependency Injection
@@ -19,17 +20,20 @@ class TaskController extends Controller
 
     public function index()
     {
+        $this->authorize('viewAny');
         $tasks = $this->taskService->getAllTasks();
         return View::make('tasks.index', ['tasks' => $tasks]);
     }
 
     public function create()
     {
+        $this->authorize('create');
         return View::make('tasks.create');
     }
 
     public function store(StoreTaskRequest $request)
     {
+        $this->authorize('create');
         $validated = $request->validated(); // произведение валидации данных
         // пришедших от пользователя
         // обращение к приватному свойству конструктора
@@ -40,12 +44,14 @@ class TaskController extends Controller
 
     public function show($id)
     {
+        $this->authorize('view');
         $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
 
     public function edit($id)
     {
+        $this->authorize('update');
         $task = $this->taskService->getTaskById($id);
 
         return View::make('tasks.edit', ['task'=>$task]);
@@ -53,6 +59,7 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, $id)
     {
+        $this->authorize('update');
         $task = $this->taskService->getTaskById($id);
 
         $validated = $request->validated();
@@ -62,6 +69,7 @@ class TaskController extends Controller
 
     public function destroy($id)
     {
+        $this->authorize('delete');
         $this->taskService->deleteTask($id);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
     }
