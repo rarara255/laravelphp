@@ -29,7 +29,6 @@ class TaskPolicy
     public function viewAny(User $user): bool
     {
         return in_array($user->role,[
-            User::ROLE_ADMIN,
             User::ROLE_MEMBER,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
@@ -46,7 +45,6 @@ class TaskPolicy
     public function view(User $user, Task $task)
     {
         return in_array($user->role,[
-            User::ROLE_ADMIN,
             User::ROLE_MEMBER,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
@@ -62,7 +60,6 @@ class TaskPolicy
     public function create(User $user)
     {
         return in_array($user->role,[
-            User::ROLE_ADMIN,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
         ]);
@@ -78,7 +75,6 @@ class TaskPolicy
     public function update(User $user, Task $task)
     {
         return in_array($user->role,[
-            User::ROLE_ADMIN,
             User::ROLE_EDITOR,
             User::ROLE_AUTHOR
         ]);
@@ -97,7 +93,6 @@ class TaskPolicy
             return true;
         }
         return in_array($user->role,[
-            User::ROLE_ADMIN,
             User::ROLE_EDITOR
         ]);
     }

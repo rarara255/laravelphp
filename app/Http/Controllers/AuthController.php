@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
 use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
 
 class AuthController extends Controller
 {
@@ -28,19 +27,19 @@ class AuthController extends Controller
 
     public function showRegister()
     {
-        return view('register.login');
+        return View::make('register.login');
     }
     public function register(RegisterRequest $request)
     {
         $data = $request->validated();
         $user = $this->authService->registerUser($data);
-        Auth::login($user);
+        Auth::login($user); // авторизация пользователя
         Session::flash('success','Welcome');
         return Redirect::route('dashboard');
     }
     public function showLogin()
     {
-        return view('auth.login');
+        return View::make('auth.login');
     }
     public function login(Request $request)
     {

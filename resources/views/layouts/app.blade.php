@@ -14,16 +14,16 @@
            <a class="navbar-brand" href="/">Tasks Project</a>
            <div class="navbar-nav">
                <a class="nav-link" href="{{ route('tasks.index') }}">Задачи</a>
-{{--                @auth--}}
-{{--                    <a class="nav-link" href="{{ route('') }}">Повысить свои полномочия</a>--}}
-{{--                @endauth--}}
-</div>
-</div>
-</nav>
+                @auth
+                    <a class="nav-link" href="{{ route('') }}">Повысить свои полномочия</a>
+                @endauth
+           </div>
+       </div>
+   </nav>
 
 
-<div class="container">
-    @yield('content')
-</div>
+    <div class="container">
+        @yield('content')
+    </div>
 </body>
 </html>

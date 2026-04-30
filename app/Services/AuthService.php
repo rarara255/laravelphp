@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthService
 {
@@ -23,17 +24,25 @@ class AuthService
         $user->role = 'editor';
         $user->save();
     }
-    public function registerUser(array $data)
+    public function CreateMember(){
+        $user = new User();
+        $user->name = 'member';
+        $user->email = 'test3@gmail.com';
+        $user->password = Hash::make('member');
+        $user->role = 'member';
+        $user->save();
+    }
+    public function registerUser(array $data): User
     {
-        try {
-            $user = new User();
-            $user->name = $data['name'];
-            $user->email = $data['email'];
-            $user->password = Hash::make($data['password']);
-            $user->save();
-            return $user;
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->role = User::ROLE_MEMBER;
+        $user->save();
+        return $user;
+    }
+    public function attemptLogin(array $credentials): bool{
+        return Auth::attempt($credentials);
     }
 }
