@@ -9,7 +9,7 @@
             <hr>
             <form action="{{route('logout')}}" method="POST">
                 @csrf
-                <button class="btn bnt-outline-danger w-100">Выйти из учётной записи</button>
+                <button class="btn bnt-outline-danger w-100" type="submit">Выйти из учётной записи</button>
             </form>
 
         </div>
