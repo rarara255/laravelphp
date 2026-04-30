@@ -72,7 +72,8 @@ class TaskController extends Controller
 
     public function destroy($id)
     {
-        $this->authorize('delete', Task::class);
+        $task = $this->taskService->getTaskById($id);
+        $this->authorize('delete', $task);
         $this->taskService->deleteTask($id);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
     }
