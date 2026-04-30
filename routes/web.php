@@ -35,6 +35,15 @@ Route::middleware('guest')->group(function (){
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 });
+
+Route::middleware('auth')->group(function (){
+    Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
+
+    Route::get('role-request/create', [RoleRequestController::class, ])->name('role_request_create');
+    Route::post('role-request', [RoleRequestController::class, ])->name('role_request');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
 Route::get('/admins/createAdmin', [AuthController::class, 'createAdmin']);
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
+

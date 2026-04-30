@@ -27,7 +27,7 @@ class AuthController extends Controller
 
     public function showRegister()
     {
-        return View::make('register.login');
+        return View::make('auth.register');
     }
     public function register(RegisterRequest $request)
     {
@@ -58,10 +58,11 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return Redirect::route('login')->with('success', 'Вы вышли из системы');
+
+        return Redirect::route('login');
     }
     public function showDashboard()
     {
-        return view('dashboard');
+        return view('user.dashboard');
     }
 }
