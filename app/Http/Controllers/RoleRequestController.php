@@ -14,6 +14,6 @@ class RoleRequestController extends Controller
     protected RoleRequestService $service;
 
     public function __construct(RoleRequestService $service){
-        $this->service = $service
+        $this->service = $service;
     }
 }
