@@ -16,4 +16,16 @@ class RoleRequestController extends Controller
     public function __construct(RoleRequestService $service){
         $this->service = $service;
     }
+
+    public function create(){
+        $hasPending = Auth::user()->requests()->where('status','pending');
+        return View::make('role_requests.create', compact('hasPending'));
+    }
+
+    public function store(StoreRoleRequest $request){
+        $user = Auth::user();
+        $this->service->create($request->validated(), $user->id);
+        return redirect()->route('dashboard')->with('success', 'Заявка принята');
+    }
+
 }
