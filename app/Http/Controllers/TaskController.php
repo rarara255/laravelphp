@@ -45,7 +45,7 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $this->authorize('view', Task::class);
+        $this->authorize('view', $id);
         $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
