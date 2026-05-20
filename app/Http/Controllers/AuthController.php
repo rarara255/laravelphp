@@ -21,7 +21,7 @@ class AuthController extends Controller
     }
 
     public function createAdmin(){
-        $this->authService->CreateEditor();
+        $this->authService->CreateAdmin();
     }
 
 

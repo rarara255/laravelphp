@@ -45,7 +45,8 @@ class TaskController extends Controller
 
     public function show($id)
     {
-        $this->authorize('view', $id);
+        $task = $this->taskService->getTaskById($id);
+        $this->authorize('view', $task);
         $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
@@ -53,7 +54,7 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = $this->taskService->getTaskById($id);
-        $this->authorize('update', $id);
+        $this->authorize('update', $task);
         $task = $this->taskService->getTaskById($id);
 
         return View::make('tasks.edit', ['task'=>$task]);
