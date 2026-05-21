@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="card-header bg-green"> <h4>Регистрация нового пользователя</h4></div>
+        <div class="card-header bg-green"> <h4>Вход в систему</h4></div>
 
         <div class="card-body">
             <form method="post" action="{{route('login.post')}}">

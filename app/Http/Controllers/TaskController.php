@@ -47,7 +47,7 @@ class TaskController extends Controller
     {
         $task = $this->taskService->getTaskById($id);
         $this->authorize('view', $task);
-        $task = Task::findorfail($id); // SELECT * FROM tasks WHERE id=$id;
+         // SELECT * FROM tasks WHERE id=$id;
         return view('tasks.show', compact('task'));
     }
 
@@ -55,8 +55,6 @@ class TaskController extends Controller
     {
         $task = $this->taskService->getTaskById($id);
         $this->authorize('update', $task);
-        $task = $this->taskService->getTaskById($id);
-
         return View::make('tasks.edit', ['task'=>$task]);
     }
 
@@ -64,7 +62,6 @@ class TaskController extends Controller
     {
         $task = $this->taskService->getTaskById($id);
         $this->authorize('update', $task);
-        $task = $this->taskService->getTaskById($id);
 
         $validated = $request->validated();
         $this->taskService->updateTask($task,$validated);
@@ -75,7 +72,6 @@ class TaskController extends Controller
     {
         $task = $this->taskService->getTaskById($id);
         $this->authorize('delete', $task);
-        $this->taskService->deleteTask($id);
         return Redirect::route('tasks.index')->with('success', 'Задача успешно удалена');
     }
 }
