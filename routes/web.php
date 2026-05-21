@@ -22,4 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 Route::get('/counter', [\App\Http\Controllers\PageController::class, 'counter']);
 
+Route::get('/test', function () {
+    return view('test');
+});
+
+
 require __DIR__.'/auth.php';
