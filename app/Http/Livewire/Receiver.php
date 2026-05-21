@@ -15,8 +15,4 @@ class Receiver extends Component
         $this->message = $text;
     }
 
-    public function render()
-    {
-        return view('livewire.receiver');
-    }
 }
