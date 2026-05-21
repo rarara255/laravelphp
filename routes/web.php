@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleRequestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,12 +38,12 @@ Route::middleware('guest')->group(function (){
 });
 
 Route::middleware('auth')->group(function (){
-    Route::post('/logout', [ProfileController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/dashboard', [ProfileController::class, 'showDashboard'])->name('dashboard');
 
     Route::get('role-request/create', [RoleRequestController::class, ])->name('role_request_create');
     Route::post('role-request', [RoleRequestController::class, ])->name('role_request');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+  //  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 Route::get('/admins/createAdmin', [AuthController::class, 'createAdmin']);
