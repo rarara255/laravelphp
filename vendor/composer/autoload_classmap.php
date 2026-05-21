@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Requests\\UpdateTaskRequest' => $baseDir . '/app/Http/Requests/UpdateTaskRequest.php',
     'App\\Models\\Comment' => $baseDir . '/app/Models/Comment.php',
     'App\\Models\\RoleRequest' => $baseDir . '/app/Models/RoleRequest.php',
+    'App\\Models\\RoleRequestLog' => $baseDir . '/app/Models/RoleRequestLog.php',
     'App\\Models\\Task' => $baseDir . '/app/Models/Task.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Policies\\CommentPolicy' => $baseDir . '/app/Policies/CommentPolicy.php',

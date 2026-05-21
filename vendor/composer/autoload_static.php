@@ -526,6 +526,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Requests\\UpdateTaskRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateTaskRequest.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\RoleRequest' => __DIR__ . '/../..' . '/app/Models/RoleRequest.php',
+        'App\\Models\\RoleRequestLog' => __DIR__ . '/../..' . '/app/Models/RoleRequestLog.php',
         'App\\Models\\Task' => __DIR__ . '/../..' . '/app/Models/Task.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Policies\\CommentPolicy' => __DIR__ . '/../..' . '/app/Policies/CommentPolicy.php',
