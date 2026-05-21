@@ -20,5 +20,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/counter', [\App\Http\Controllers\PageController::class, 'counter']);
 
 require __DIR__.'/auth.php';
