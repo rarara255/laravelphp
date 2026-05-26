@@ -6,6 +6,39 @@
             padding: 30px;
             font-family: "Droid Sans Mono Dotted";
         }
+        .btn{
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 10%;
+        }
+
+        .btn-view{
+            background-color: cornflowerblue;
+            color: ghostwhite;
+            text-shadow: -1px 1px 2px black;
+        }
+
+        .btn-approve{
+            background: green;
+            color: whitesmoke;
+            text-shadow: -1px 1px 2px gray;
+        }
+
+        .btn-reject{
+            background: darkred;
+            color: white;
+            text-shadow: -1px 1px 2px dimgray;
+        }
+
+        .data-table{
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px;
+        }
 
     </style>
 
@@ -45,13 +78,13 @@
                             <form action="{{route('admin.role_requests.approve', $request)}}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-approve" onclick="return confirm('Вы собираетесь подтвердить заявку')"> </button>
+                                <button type="submit" class="btn btn-approve" onclick="return confirm('Вы собираетесь подтвердить заявку')">Принять заявку</button>
                             </form>
 
                             <form action="{{route('admin.role_requests.reject', $request)}}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button type="submit" class="btn btn-approve" onclick="return confirm('Вы собираетесь отклонить заявку')"> </button>
+                                <button type="submit" class="btn btn-reject" onclick="return confirm('Вы собираетесь отклонить заявку')">Отклонить заявку</button>
                             </form>
                         </td>
                     </tr>
