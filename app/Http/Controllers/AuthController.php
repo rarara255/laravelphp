@@ -20,11 +20,6 @@ class AuthController extends Controller
         $this->authService = $authService;
     }
 
-    public function createAdmin(){
-        $this->authService->CreateAdmin();
-    }
-
-
     public function showRegister()
     {
         return View::make('auth.register');

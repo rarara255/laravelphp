@@ -19,6 +19,11 @@ class AdminRoleRequestController extends Controller
         return View::make('admin.role_requests.index',['requests'=>$requests]);
     }
 
+    public function show(int $id){
+        $roleRequest = RoleRequest::findOrFail($id);
+        return View::make('admin.role_requests.show',['roleRequest'=>$roleRequest]);
+    }
+
     public function approve(RoleRequest $roleRequest){
         $this->service->approveRequest($roleRequest);
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleRequestController;
+use App\Http\Controllers\AdminRoleRequestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,5 +47,11 @@ Route::middleware('auth')->group(function (){
   //  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/admins/createAdmin', [AuthController::class, 'createAdmin']);
+Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/role-requests',[AdminRoleRequestController::class,'index'])->name('role_requests.index');
+    Route::get('/role-requests/id',[AdminRoleRequestController::class,'show'])->name('role_requests.show');
+    Route::get('/role-requests/{roleRequest}/approve',[AdminRoleRequestController::class,'approve'])->name('role_requests.approve');
+    Route::get('/role-requests/{roleRequest}/reject',[AdminRoleRequestController::class,'reject'])->name('role_requests.reject');
+});
+
 
