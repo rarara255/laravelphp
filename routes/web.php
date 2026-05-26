@@ -39,10 +39,10 @@ Route::middleware('guest')->group(function (){
 
 Route::middleware('auth')->group(function (){
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::get('/dashboard', [ProfileController::class, 'showDashboard'])->name('dashboard');
+    Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('dashboard');
 
     Route::get('role-request/create', [RoleRequestController::class, 'create'])->name('role_request_create');
-    Route::post('role-request', [RoleRequestController::class, 'store'])->name('role_request');
+    Route::post('role-request', [RoleRequestController::class, 'store'])->name('role_request_store');
   //  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

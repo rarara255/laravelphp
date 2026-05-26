@@ -15,7 +15,7 @@
            <div class="navbar-nav">
                <a class="nav-link" href="{{ route('tasks.index') }}">Задачи</a>
                 @auth
-                    <a class="nav-link" href="{{ route('') }}">Повысить свои полномочия</a>
+                    <a class="nav-link" href="{{ route('role_request_create') }}">Повысить свои полномочия</a>
                 @endauth
            </div>
        </div>

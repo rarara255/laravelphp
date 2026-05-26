@@ -4,7 +4,7 @@
     <div class="px-4 py-5 sm:p-6">
         <h3 class="text-lg text-grey-900">Запрос на повышение прав:</h3>
 
-        <form action="{{route('role_requests.store')}}" method="POST" class="mt-5">
+        <form action="{{route('role_request_store')}}" method="POST" class="mt-5">
         @csrf
         <div class="mb-4">
             <label for="requested_role" class="font-medium text-red-700 rounded-md block mt-1">Роль:</label>
