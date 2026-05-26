@@ -49,9 +49,9 @@ Route::middleware('auth')->group(function (){
 
 Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/role-requests',[AdminRoleRequestController::class,'index'])->name('role_requests.index');
-    Route::get('/role-requests/id',[AdminRoleRequestController::class,'show'])->name('role_requests.show');
-    Route::get('/role-requests/{roleRequest}/approve',[AdminRoleRequestController::class,'approve'])->name('role_requests.approve');
-    Route::get('/role-requests/{roleRequest}/reject',[AdminRoleRequestController::class,'reject'])->name('role_requests.reject');
+    Route::get('/role-requests/{roleRequest}',[AdminRoleRequestController::class,'show'])->name('role_requests.show');
+    Route::patch('/role-requests/{roleRequest}/approve',[AdminRoleRequestController::class,'approve'])->name('role_requests.approve');
+    Route::patch('/role-requests/{roleRequest}/reject',[AdminRoleRequestController::class,'reject'])->name('role_requests.reject');
 });
 
 

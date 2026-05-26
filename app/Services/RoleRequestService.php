@@ -11,6 +11,7 @@ class RoleRequestService
     }
     public function approveRequest(RoleRequest $roleRequest): void{
         $roleRequest->update(['status' => 'approved']);
+        //$roleRequest->user->update(['role' => $roleRequest->requested_role]);
     }
     public function rejectRequest(RoleRequest $roleRequest): void{
         $roleRequest->update(['status' => 'rejected']);

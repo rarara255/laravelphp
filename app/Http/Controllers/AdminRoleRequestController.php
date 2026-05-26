@@ -26,11 +26,15 @@ class AdminRoleRequestController extends Controller
 
     public function approve(RoleRequest $roleRequest){
         $this->service->approveRequest($roleRequest);
-
+        return redirect()
+            ->route('admin.role_requests.index')
+            ->with('success', 'Заявка одобрена! Роль пользователя изменена.');
     }
 
     public function reject(RoleRequest $roleRequest){
         $this->service->rejectRequest($roleRequest);
-
+        return redirect()
+            ->route('admin.role_requests.index')
+            ->with('error', 'Заявка отклонена.');
     }
 }

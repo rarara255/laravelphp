@@ -39,7 +39,86 @@
             overflow: hidden;
             font-size: 14px;
         }
+        /*.data-table thead {*/
+        /*    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);*/
+        /*    color: #fff;*/
+        /*    font-weight: 600;*/
+        /*    text-transform: uppercase;*/
+        /*    font-size: 12px;*/
+        /*    letter-spacing: 0.5px;*/
+        /*}*/
 
+        /*.data-table th,*/
+        /*.data-table td {*/
+        /*    padding: 12px 15px;*/
+        /*    text-align: left;*/
+        /*    border-bottom: 1px solid #e0e0e0;*/
+        /*    vertical-align: middle;*/
+        /*}*/
+
+        /*.data-table th:last-child,*/
+        /*.data-table td:last-child {*/
+        /*    text-align: center;*/
+        /*}*/
+
+        /*.data-table tbody tr {*/
+        /*    transition: background-color 0.2s ease;*/
+        /*}*/
+
+        /*.data-table tbody tr:hover {*/
+        /*    background-color: #f8f9ff;*/
+        /*}*/
+
+        /*.data-table tbody tr:nth-child(even) {*/
+        /*    background-color: #fafafa;*/
+        /*}*/
+
+        /*.data-table tbody tr:nth-child(even):hover {*/
+        /*    background-color: #f0f4ff;*/
+        /*}*/
+
+        /*.data-table td small {*/
+        /*    display: block;*/
+        /*    color: #666;*/
+        /*    font-size: 11px;*/
+        /*    margin-top: 2px;*/
+        /*}*/
+
+        /*.data-table td strong {*/
+        /*    color: #2c3e50;*/
+        /*    font-size: 14px;*/
+        /*}*/
+
+        /*.data-table td:last-child {*/
+        /*    display: flex;*/
+        /*    gap: 6px;*/
+        /*    justify-content: center;*/
+        /*    flex-wrap: wrap;*/
+        /*}*/
+
+        /*.data-table td:last-child form {*/
+        /*    display: inline-block;*/
+        /*    margin: 0;*/
+        /*}*/
+
+        /*.data-table td:last-child .btn {*/
+        /*    font-size: 12px;*/
+        /*    padding: 5px 10px;*/
+        /*    border: none;*/
+        /*    min-width: 32px;*/
+        /*    display: inline-flex;*/
+        /*    align-items: center;*/
+        /*    justify-content: center;*/
+        /*}*/
+
+
+        /*.data-table tbody tr:only-child td:empty,*/
+        /*.data-table td:only-child {*/
+        /*    text-align: center;*/
+        /*    padding: 40px 20px;*/
+        /*    color: #888;*/
+        /*    font-style: italic;*/
+        /*}*/
     </style>
 
 
