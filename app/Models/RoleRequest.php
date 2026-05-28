@@ -16,4 +16,8 @@ class RoleRequest extends Model
     public function scopePending($query){
         return $query->where('status', 'pending');
     }
+    public function comments()
+    {
+        return $this->hasMany(CommentRequest::class);
+    }
 }
