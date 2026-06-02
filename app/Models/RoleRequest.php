@@ -13,11 +13,15 @@ class RoleRequest extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopePending($query){
+    public static function scopePending($query){
         return $query->where('status', 'pending');
     }
     public function comments()
     {
         return $this->hasMany(CommentRequest::class);
+    }
+
+    public static function scopeForUser($query, $userId){
+        return $query->where('user_id', $userId);
     }
 }

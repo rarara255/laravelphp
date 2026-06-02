@@ -7,7 +7,7 @@ use App\Http\Requests\StoreRoleRequest;
 use App\Services\RoleRequestService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
-
+use App\Models\RoleRequest;
 
 class RoleRequestController extends Controller
 {
@@ -18,7 +18,7 @@ class RoleRequestController extends Controller
     }
 
     public function create(){
-        $hasPending = Auth::user()->requests()->where('status','pending');
+        $hasPending = RoleRequest::pending()->forUser(Auth::id())->get();
         return View::make('role_requests.create', compact('hasPending'));
     }
 

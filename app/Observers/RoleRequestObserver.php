@@ -5,6 +5,8 @@ namespace App\Observers;
 
 use App\Models\RoleRequest;
 use App\Models\RoleRequestLog;
+use Illuminate\Support\Facades\Auth;
+
 class RoleRequestObserver
 {
     public function updated(RoleRequest $roleRequest){
@@ -15,7 +17,7 @@ class RoleRequestObserver
 
             RoleRequestLog::create([
                 'role_request_id' => $roleRequest->id,
-//                'processed_by' =>,
+                'processed_by' => Auth::user()->name ?? "Admin",
                 'action'=> $roleRequest->status,
             ]);
         }
