@@ -14,8 +14,15 @@
            <a class="navbar-brand" href="/">Tasks Project</a>
            <div class="navbar-nav">
                <a class="nav-link" href="{{ route('tasks.index') }}">Задачи</a>
+               <a class="nav-link" href="{{ route('dashboard') }}">Профиль</a>
                 @auth
                     <a class="nav-link" href="{{ route('role_request_create') }}">Повысить свои полномочия</a>
+                   @if(auth()->user()->role === 'admin')
+                       <a class="nav-link" href="{{ route('admin.role_requests.index') }}">Заявки</a>
+                   @endif
+                   @if(auth()->user()->role === 'author' or auth()->user()->role === 'editor' or auth()->user()->role === 'admin')
+                       <a class="nav-link" href="{{ route('tasks.create') }}">Создать задачу</a>
+                   @endif
                 @endauth
            </div>
        </div>

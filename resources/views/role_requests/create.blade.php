@@ -15,7 +15,7 @@
         </div>
         <div class="mb-4">
             <label>
-                <textarea name="reason" id="reason" rows="4" class="mt-1 w-full border-pink-200">Почему ты достойный кандидат для получения этих прав?</textarea>
+                <textarea name="reason" id="reason" rows="4" class="mt-1 w-full border-pink-200" placeholder="Почему ты достойный кандидат для получения этих прав?"></textarea>
             </label>
         </div>
         <button type="submit" class="inline-flex py-2 px-4 border text-white bg-green-200">

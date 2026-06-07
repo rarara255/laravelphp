@@ -25,7 +25,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'requested_role' => 'required',
-            'reason' => 'required|min:15|max:1024'
+            'reason' => 'required|min:10|max:1024'
         ];
     }
 }
